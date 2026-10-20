@@ -1,0 +1,226 @@
+# BOHEMIA
+
+Player de música inspirado no Spotify, feito com **HTML, CSS e JavaScript puro**, sem frameworks nem bibliotecas além do Font Awesome para os ícones.
+
+🔗 **Demo:** [LeoGB1409.github.io/bohemia](https://github.com/LeoGB1409/Bohemia)
+
+![BOHEMIA em ação](./Preview.png)
+
+> Projeto de estudo, sem fins lucrativos e sem qualquer ligação com o Spotify.
+
+## Funcionalidades
+
+**Player**
+- Clique em um artista ou álbum para tocar a música
+- Play/pause, anterior e próxima (o botão de voltar reinicia a faixa se já passaram 3 segundos, como no Spotify)
+- Próxima música toca sozinha ao terminar, e o botão de loop repete a faixa atual
+- Barra de progresso com tempo atual e total, e arrastar para pular trechos
+- Controle de volume e botão de mudo
+- Atalho de teclado: `Espaço` para pausar e tocar
+- Título da aba do navegador acompanha a música que está tocando
+
+**Biblioteca**
+- **Músicas Curtidas:** curta pelo coração do player e veja tudo em uma aba própria
+- **Playlists:** crie playlists pelo modal, escolha as músicas, abra e exclua
+- Curtidas e playlists ficam salvas no navegador (`localStorage`) e sobrevivem ao recarregar a página
+
+**Interface**
+- Busca em tempo real por artista, álbum ou música, ignorando acentos e maiúsculas
+- Saudação que muda conforme o horário (Bom dia, Boa tarde, Boa noite)
+- Layout responsivo: no celular, a sidebar vira um menu lateral aberto pelo botão ☰
+
+## Tecnologias
+
+| | |
+|---|---|
+| **HTML5** | Estrutura semântica |
+| **CSS3** | Grid, Flexbox, media queries, variáveis CSS e transições |
+| **JavaScript (ES6+)** | Manipulação do DOM, delegação de eventos, objeto `Audio`, `localStorage` |
+| **Font Awesome** | Ícones |
+
+## Como rodar localmente
+
+```bash
+git clone https://github.com/SEU-USUARIO/bohemia.git
+cd bohemia
+```
+
+Abra a pasta no VS Code e use a extensão **Live Server**, ou rode um servidor simples:
+
+```bash
+python -m http.server 5500
+```
+
+e acesse `http://localhost:5500`. Abrir o `index.html` direto no navegador pode bloquear o áudio em alguns navegadores, por isso o servidor local.
+
+## Estrutura
+
+```
+bohemia/
+├── index.html
+├── style.css
+├── scripts.js
+├── img/        # capas e fotos
+├── audio/      # faixas de áudio
+└── docs/       # GIF e prints do README
+```
+
+## Como adicionei uma música nova
+
+Os dados ficam em dois arrays no `scripts.js`. Para incluir um item, basta adicionar um objeto com o caminho do áudio:
+
+```javascript
+{ name: 'Artista', img: './img/artista.jpg', audio: './audio/artista.mp3', track: 'Nome da música' }
+```
+
+Os cards, a busca, as curtidas e as playlists são gerados a partir desses dados, sem mexer no HTML.
+
+## O que aprendi
+
+- **Delegação de eventos:** um único listener por grade de cards, em vez de um por card, com `closest()` para achar o card clicado.
+- **Fonte única de verdade:** a interface (ícone de play/pause e destaque do card) é atualizada pelos eventos `play` e `pause` do próprio `Audio`, e não pelos cliques.
+- **Eventos de áudio:** `loadedmetadata`, `durationchange`, `timeupdate` e `ended`, e por que a duração pode chegar como `NaN` ou `Infinity` em alguns arquivos.
+- **Persistência:** `localStorage` com `try/catch` para lidar com dados corrompidos.
+- **Segurança básica:** textos digitados pelo usuário entram na página com `textContent`, nunca com `innerHTML`.
+- **Responsividade:** sidebar off-canvas com `transform` e media queries.
+
+## Próximos passos
+
+- [ ] Seção de podcasts
+- [ ] Adicionar música a uma playlist já existente
+- [ ] Modo aleatório (shuffle)
+- [ ] Fila de reprodução
+- [ ] Versão em React
+
+## Aviso sobre conteúdo
+
+Este é um projeto educacional e não comercial. Nomes de artistas, capas e fotos pertencem aos seus respectivos donos e aparecem apenas como referência visual. <!-- "Os arquivos de áudio não estão no repositório; adicione os seus na pasta audio/." -->
+
+## Autor
+
+**Leonardo**
+[LinkedIn](https://www.linkedin.com/in/leonardo-biazus-4989763a3/) · [GitHub](https://github.com/LeoGB1409)
+
+# BOHEMIA
+
+A Spotify-inspired music player built with **pure HTML, CSS, and JavaScript**, with no frameworks or libraries other than Font Awesome for icons.
+
+🔗 **Demo:** [LeoGB1409.github.io/bohemia](https://github.com/LeoGB1409/Bohemia)
+
+![BOHEMIA em ação](./Preview.png)
+
+
+
+> Educational, non-profit project with no affiliation with Spotify.
+
+## Features
+
+### Player
+
+- Click an artist or album to play a song
+- Play/pause, previous, and next controls (the previous button restarts the track if more than 3 seconds have already passed, just like Spotify)
+- Automatically plays the next song when the current track ends
+- Loop button to repeat the current track
+- Progress bar showing current and total time, with seeking by dragging
+- Volume control and mute button
+- Keyboard shortcut: `Space` to play/pause
+- Browser tab title updates according to the currently playing song
+
+### Library
+
+- **Liked Songs:** like a song using the player's heart button and access all liked songs in a dedicated section
+- **Playlists:** create playlists through a modal, select songs, open playlists, and delete them
+- Likes and playlists are stored in the browser using `localStorage` and persist after reloading the page
+
+### Interface
+
+- Real-time search by artist, album, or song, ignoring accents and letter casing
+- Greeting changes according to the time of day (Good morning, Good afternoon, Good evening)
+- Responsive layout: on mobile, the sidebar becomes an off-canvas menu opened with the ☰ button
+
+## Technologies
+
+| Technology | Usage |
+|---|---|
+| **HTML5** | Semantic structure |
+| **CSS3** | Grid, Flexbox, media queries, CSS variables, and transitions |
+| **JavaScript (ES6+)** | DOM manipulation, event delegation, `Audio` API, and `localStorage` |
+| **Font Awesome** | Icons |
+
+## Running Locally
+
+```bash
+git clone https://github.com/SEU-USUARIO/bohemia.git
+cd bohemia
+```
+
+Open the folder in VS Code and use the **Live Server** extension, or run a simple local server:
+
+```bash
+python -m http.server 5500
+```
+
+Then open `http://localhost:5500` in your browser.
+
+Opening `index.html` directly may prevent audio from working in some browsers, which is why a local server is recommended.
+
+## Project Structure
+
+```text
+bohemia/
+├── index.html
+├── style.css
+├── scripts.js
+├── img/        # Album covers and artist photos
+├── audio/      # Audio tracks
+└── docs/       # GIFs and README screenshots
+```
+
+## Adding a New Song
+
+The music data is stored in two arrays inside `scripts.js`.
+
+To add a new item, simply add an object containing the audio path:
+
+```javascript
+{
+  name: 'Artist',
+  img: './img/artist.jpg',
+  audio: './audio/artist.mp3',
+  track: 'Song Name'
+}
+```
+
+Cards, search results, likes, and playlists are generated from this data, so there is no need to modify the HTML manually.
+
+## What I Learned
+
+- **Event delegation:** using a single listener for each card grid instead of one listener per card, with `closest()` to identify the clicked card.
+- **Single source of truth:** the UI (play/pause icon and active card state) is updated through the `Audio` element's `play` and `pause` events rather than directly from click handlers.
+- **Audio events:** working with `loadedmetadata`, `durationchange`, `timeupdate`, and `ended`, as well as understanding why duration can sometimes return `NaN` or `Infinity` for certain audio files.
+- **Persistence:** using `localStorage` with `try/catch` to handle corrupted data safely.
+- **Basic security:** user-entered text is inserted into the page using `textContent`, never `innerHTML`.
+- **Responsive design:** implementing an off-canvas sidebar using `transform` and media queries.
+
+## Future Improvements
+
+- [ ] Podcast section
+- [ ] Add songs to an existing playlist
+- [ ] Shuffle mode
+- [ ] Playback queue
+- [ ] React version
+
+## Content Disclaimer
+
+This is an educational and non-commercial project. Artist names, album covers, and photos belong to their respective owners and are used solely as visual references.
+
+<!-- 
+"Audio files are not included in the repository; add your own files to the audio/ folder."
+-->
+
+## Author
+
+**Leonardo**
+
+[LinkedIn](https://www.linkedin.com/in/leonardo-biazus-4989763a3/) · [GitHub](https://github.com/LeoGB1409)
+
